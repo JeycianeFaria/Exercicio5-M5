@@ -3,6 +3,8 @@ package br.com.zup.lead_collector.lead;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LeadService {
 
@@ -13,4 +15,7 @@ public class LeadService {
         return leadRepository.save(leadRecebido);
     }
 
+    public List<Lead> buscarLeadsPorProduto(String nomeProduto){
+        return leadRepository.findAllByProdutosNomeProduto(nomeProduto);
+    }
 }

@@ -4,6 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/leads")
 public class LeadController {
@@ -18,5 +20,9 @@ public class LeadController {
        return leadService.salvarLead(leadCadastrado);
     }
 
+    @GetMapping
+    public List<Lead> buscarLeadsPorProduto(@RequestParam String nomeProduto){
+        return leadService.buscarLeadsPorProduto(nomeProduto);
+    }
 
 }
