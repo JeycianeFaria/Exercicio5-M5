@@ -9,4 +9,8 @@ public class LeadService {
     @Autowired
     LeadRepository leadRepository;
 
+    public Lead salvarLead(Lead leadRecebido){
+        return leadRepository.save(leadRecebido);
+    }
+
 }
