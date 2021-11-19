@@ -17,6 +17,7 @@ public class LeadService {
     @Autowired
     ProdutoRepository produtoRepository;
 
+
     public List<Produto> atualizarProdutos(List<Produto> produtosRecebidos) {
         List<Produto> listaAtualizada = new ArrayList<>();
 
@@ -31,23 +32,13 @@ public class LeadService {
         return listaAtualizada;
     }
 
-
-    public Lead salvarLead(Lead leadRecebido) {
-        List<Produto> produtos = atualizarProdutos(leadRecebido.getProdutos());
-        leadRecebido.setProdutos(produtos);
-        Lead lead = buscarLead(leadRecebido);
-
-        return leadRepository.save(lead);
-    }
-
-
-    public Lead buscarLead(Lead lead){
+    public Lead buscarLead(Lead lead) {
 
         Optional<Lead> leadOptional = leadRepository.findById(lead.getEmail());
 
-        if (leadOptional.isPresent()){
-            for (Produto referencia: lead.getProdutos()){
-                if (!leadOptional.get().getProdutos().contains(referencia)){
+        if (leadOptional.isPresent()) {
+            for (Produto referencia : lead.getProdutos()) {
+                if (!leadOptional.get().getProdutos().contains(referencia)) {
                     leadOptional.get().getProdutos().add(referencia);
                 }
             }
@@ -56,6 +47,14 @@ public class LeadService {
         }
 
         return lead;
+    }
+
+    public Lead salvarLead(Lead leadRecebido) {
+        List<Produto> produtos = atualizarProdutos(leadRecebido.getProdutos());
+        leadRecebido.setProdutos(produtos);
+        Lead lead = buscarLead(leadRecebido);
+
+        return leadRepository.save(lead);
     }
 
     public List<Lead> buscarLeadsPorProduto(String nomeProduto) {

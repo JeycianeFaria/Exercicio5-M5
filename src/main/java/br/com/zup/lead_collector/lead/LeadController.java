@@ -16,12 +16,12 @@ public class LeadController {
     ModelMapper modelMapper;
 
     @PutMapping
-    public Lead cadastrarLead(@RequestBody Lead leadCadastrado){
-       return leadService.salvarLead(leadCadastrado);
+    public Lead cadastrarLead(@RequestBody Lead leadCadastrado) {
+        return leadService.salvarLead(leadCadastrado);
     }
 
     @GetMapping
-    public List<Lead> buscarLeadsPorProduto(@RequestParam String nomeProduto){
+    public List<Lead> buscarLeadsPorProduto(@RequestParam String nomeProduto) {
         return leadService.buscarLeadsPorProduto(nomeProduto);
     }
 
